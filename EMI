@@ -1,0 +1,41 @@
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
+import datetime
+
+
+num1 = float(input("Enter Loan amount: "))
+num2 = float(input("Enter loan tenure: "))
+
+
+total_pay_amt = num1 + num1*.12
+
+principal_emi= float(num1/num2)
+p_emi=round(principal_emi, 2)
+
+interest_emi=(num1*.12)/num2
+i_emi=round(interest_emi, 2)
+total_emi= principal_emi+interest_emi
+t1=round(total_emi, 2)
+
+print("1. Total payble amout:", total_pay_amt)
+print("2. Principal EMI:", p_emi)
+print("3. Interest EMI:", i_emi)
+print("4. Total EMI:", t1)
+print("5. Loan Creation Date: ", today)
+today = datetime.datetime.strftime(datetime.datetime.today() , '%dth %B %Y')
+
+print("EMI DETAILS:")
+
+tr=total_pay_amt-t1
+oneDayLater = datetime.datetime.today() + datetime.timedelta(days = 0)
+num3 = 1
+while (num3 <= num2):
+    print("EMI No:", num3, " Principal EMI:", p_emi, " Interest EMI:", i_emi, " Total EMI:", t1, 
+         "Principal Remaining:", round(tr, 2))
+    tr=tr-t1
+    num3 = num3 + 1
+    oneDayLater += relativedelta(days=30)
+    print("EMI Date: ", datetime.datetime.strftime(oneDayLater , '%dth %B %Y'))
+
+
+print("Thank you!")
